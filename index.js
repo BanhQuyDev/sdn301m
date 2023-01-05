@@ -5,11 +5,13 @@ const bodyParser = require("body-parser");
 const port = 5000;
 const app = express();
 const morgan = require("morgan");
+const nationRouter = require("./routes/nationRouter");
+const playerRouter = require("./routes/playerRouter");
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(express.static(__dirname + "/public"));
-const nationRouter = require('./routes/nationRouter');
-app.use('/nations', nationRouter)
+app.use("/nations", nationRouter);
+app.use("/players", playerRouter);
 // app.use((req, res, next) => {
 //   console.log(req.headers);
 //   res.statusCode = 200;

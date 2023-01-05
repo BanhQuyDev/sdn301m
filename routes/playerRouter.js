@@ -1,13 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const nationRouter = express.Router();
-nationRouter.use(bodyParser.json());
-nationRouter.route("/:nationId").get((req, res, next) => {
+const playerRouter = express.Router();
+playerRouter.use(bodyParser.json());
+playerRouter.route("/:playerId").get((req, res, next) => {
   res.end(
-    "Will send details of the nation: " + req.params.nationId + " to you!"
+    "Will send details of the player: " + req.params.nationId + " to you!"
   );
 });
-nationRouter
+playerRouter
   .route("/")
   .all((req, res, next) => {
     res.statusCode = 200;
@@ -15,11 +15,11 @@ nationRouter
     next();
   })
   .get((req, res, next) => {
-    res.end("Will send all the nations to you!");
+    res.end("Will send all the players to you!");
   })
   .post((req, res, next) => {
     res.end(
-      "Will add the nation: " +
+      "Will add the player: " +
         req.body.name +
         " with details: " +
         req.body.description
@@ -27,9 +27,9 @@ nationRouter
   })
   .put((req, res, next) => {
     res.statusCode = 403;
-    res.end("PUT operation not supported on /nations");
+    res.end("PUT operation not supported on /player");
   })
   .delete((req, res, next) => {
-    res.end("Deleting all nations");
+    res.end("Deleting all players");
   });
-module.exports = nationRouter;
+module.exports = playerRouter;
